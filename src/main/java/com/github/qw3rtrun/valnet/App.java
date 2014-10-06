@@ -1,5 +1,7 @@
 package com.github.qw3rtrun.valnet;
 
+import org.axonframework.commandhandling.CommandBus;
+import org.axonframework.commandhandling.gateway.DefaultCommandGateway;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -15,7 +17,9 @@ public class App {
 
         System.out.println(obj.getMessage());
 
-        System.out.println(context.getBean("commandBus"));
-        System.out.println(context.getBean("eventBus"));
+        CommandBus bus = context.getBean("commandBus", CommandBus.class);
+        DefaultCommandGateway gateway = new DefaultCommandGateway(bus);
+
+        gateway.send(new AssociateCommand("a", 1));
     }
 }
