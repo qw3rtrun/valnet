@@ -22,7 +22,7 @@
     <axon:filesystem-event-store id="eventStore" base-dir="data"/>
 
     <bean id="myRepository" class="org.axonframework.eventsourcing.EventSourcingRepository">
-        <constructor-arg index="0" value="com.github.qw3rtrun.valnet.Value"/>
+        <constructor-arg index="0" value="com.github.qw3rtrun.valnet.Association"/>
         <constructor-arg index="1" ref="eventStore"/>
         <property name="eventBus" ref="eventBus"/>
     </bean>

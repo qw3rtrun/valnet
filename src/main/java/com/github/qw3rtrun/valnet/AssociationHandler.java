@@ -11,19 +11,19 @@ import org.axonframework.repository.Repository;
  */
 public class AssociationHandler {
 
-    private final Repository<Value> repo;
+    private final Repository<Association> repo;
 
-    public AssociationHandler(Repository<Value> repo) {
+    public AssociationHandler(Repository<Association> repo) {
         this.repo = repo;
     }
 
     @CommandHandler
     public void handle(AssociateCommand cmd) {
         try {
-            final Value val = repo.load(cmd.getName());
-            val.setValue(cmd.getValue());
+            final Association val = repo.load(cmd.getName());
+            val.setExpression(cmd.getExpression());
         } catch (AggregateNotFoundException e) {
-            repo.add(new Value(cmd.getName(), cmd.getValue()));
+            repo.add(new Association(cmd.getName(), cmd.getExpression()));
         }
     }
 

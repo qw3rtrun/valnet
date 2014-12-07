@@ -1,5 +1,7 @@
 package com.github.qw3rtrun.valnet;
 
+import com.github.qw3rtrun.valnet.expr.Expression;
+
 /**
  * Association command.
  * <p>
@@ -9,48 +11,18 @@ public class AssociateCommand {
 
     public final String name;
 
-    public final double value;
+    public final Expression expression;
 
-    public AssociateCommand(String name, double value) {
+    public AssociateCommand(String name, Expression expression) {
         this.name = name;
-        this.value = value;
+        this.expression = expression;
     }
 
     public String getName() {
         return name;
     }
 
-    public double getValue() {
-        return value;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        AssociateCommand that = (AssociateCommand) o;
-
-        if (Double.compare(that.value, value) != 0) return false;
-        return !(name != null ? !name.equals(that.name) : that.name != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = name != null ? name.hashCode() : 0;
-        temp = Double.doubleToLongBits(value);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "AssociateCommand{" +
-                "name='" + name + '\'' +
-                ", value=" + value +
-                '}';
+    public Expression getExpression() {
+        return expression;
     }
 }
